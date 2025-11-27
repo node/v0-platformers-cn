@@ -1,0 +1,403 @@
+// 平台工程相关项目数据
+export type ProjectCategory =
+  | "platform"
+  | "devops"
+  | "observability"
+  | "security"
+  | "infrastructure"
+  | "developer-portal"
+  | "service-mesh"
+  | "gitops"
+
+export type ProjectType = "opensource" | "commercial" | "hybrid"
+
+export interface Project {
+  id: string
+  name: string
+  description: string
+  category: ProjectCategory
+  type: ProjectType
+  tags: string[]
+  url: string
+  github?: string
+  logo?: string
+  stars?: number
+  featured?: boolean
+}
+
+export const projectCategories: { id: ProjectCategory; name: string; description: string }[] = [
+  { id: "platform", name: "开发者平台", description: "内部开发者平台和门户" },
+  { id: "devops", name: "DevOps 工具", description: "CI/CD、自动化和部署工具" },
+  { id: "observability", name: "可观测性", description: "监控、日志、追踪工具" },
+  { id: "security", name: "安全", description: "安全扫描、策略管理工具" },
+  { id: "infrastructure", name: "基础设施", description: "基础设施即代码和云原生工具" },
+  { id: "developer-portal", name: "开发者门户", description: "API 文档和服务目录" },
+  { id: "service-mesh", name: "服务网格", description: "服务间通信和流量管理" },
+  { id: "gitops", name: "GitOps", description: "基于 Git 的持续交付" },
+]
+
+export const projects: Project[] = [
+  // 开发者平台
+  {
+    id: "backstage",
+    name: "Backstage",
+    description: "Spotify 开源的开发者门户平台，用于构建内部开发者平台，提供服务目录、模板和插件生态",
+    category: "platform",
+    type: "opensource",
+    tags: ["开发者门户", "服务目录", "Spotify", "CNCF"],
+    url: "https://backstage.io/",
+    github: "https://github.com/backstage/backstage",
+    stars: 28000,
+    featured: true,
+  },
+  {
+    id: "port",
+    name: "Port",
+    description: "企业级内部开发者平台，提供服务目录、自助服务和开发者体验管理",
+    category: "platform",
+    type: "commercial",
+    tags: ["开发者门户", "服务目录", "自助服务"],
+    url: "https://getport.io/",
+    featured: true,
+  },
+  {
+    id: "humanitec",
+    name: "Humanitec",
+    description: "平台编排器，帮助团队构建和管理内部开发者平台",
+    category: "platform",
+    type: "commercial",
+    tags: ["平台编排", "IDP", "企业级"],
+    url: "https://humanitec.com/",
+  },
+  {
+    id: "kratix",
+    name: "Kratix",
+    description: "开源的平台即代码框架，用于构建内部开发者平台",
+    category: "platform",
+    type: "opensource",
+    tags: ["平台即代码", "Kubernetes", "GitOps"],
+    url: "https://kratix.io/",
+    github: "https://github.com/syntasso/kratix",
+  },
+  {
+    id: "crossplane",
+    name: "Crossplane",
+    description: "开源的云原生控制平面，将 Kubernetes 扩展为通用控制平面",
+    category: "platform",
+    type: "opensource",
+    tags: ["控制平面", "Kubernetes", "CNCF", "多云"],
+    url: "https://www.crossplane.io/",
+    github: "https://github.com/crossplane/crossplane",
+    stars: 9000,
+    featured: true,
+  },
+
+  // DevOps 工具
+  {
+    id: "tekton",
+    name: "Tekton",
+    description: "云原生 CI/CD 框架，提供 Kubernetes 原生的流水线能力",
+    category: "devops",
+    type: "opensource",
+    tags: ["CI/CD", "Kubernetes", "CNCF", "流水线"],
+    url: "https://tekton.dev/",
+    github: "https://github.com/tektoncd/pipeline",
+    stars: 8500,
+  },
+  {
+    id: "jenkins-x",
+    name: "Jenkins X",
+    description: "基于 Kubernetes 的自动化 CI/CD 解决方案",
+    category: "devops",
+    type: "opensource",
+    tags: ["CI/CD", "Kubernetes", "GitOps"],
+    url: "https://jenkins-x.io/",
+    github: "https://github.com/jenkins-x/jx",
+  },
+  {
+    id: "github-actions",
+    name: "GitHub Actions",
+    description: "GitHub 内置的 CI/CD 和自动化平台",
+    category: "devops",
+    type: "commercial",
+    tags: ["CI/CD", "自动化", "GitHub"],
+    url: "https://github.com/features/actions",
+    featured: true,
+  },
+  {
+    id: "gitlab-ci",
+    name: "GitLab CI/CD",
+    description: "GitLab 内置的持续集成和持续部署工具",
+    category: "devops",
+    type: "hybrid",
+    tags: ["CI/CD", "DevOps", "GitLab"],
+    url: "https://docs.gitlab.com/ee/ci/",
+  },
+  {
+    id: "dagger",
+    name: "Dagger",
+    description: "可编程的 CI/CD 引擎，使用代码定义流水线",
+    category: "devops",
+    type: "opensource",
+    tags: ["CI/CD", "可编程", "容器化"],
+    url: "https://dagger.io/",
+    github: "https://github.com/dagger/dagger",
+    stars: 10000,
+  },
+
+  // 可观测性
+  {
+    id: "prometheus",
+    name: "Prometheus",
+    description: "开源的监控和告警系统，云原生监控的事实标准",
+    category: "observability",
+    type: "opensource",
+    tags: ["监控", "告警", "CNCF", "时序数据库"],
+    url: "https://prometheus.io/",
+    github: "https://github.com/prometheus/prometheus",
+    stars: 54000,
+    featured: true,
+  },
+  {
+    id: "grafana",
+    name: "Grafana",
+    description: "开源的可视化和分析平台，支持多种数据源",
+    category: "observability",
+    type: "hybrid",
+    tags: ["可视化", "仪表盘", "监控"],
+    url: "https://grafana.com/",
+    github: "https://github.com/grafana/grafana",
+    stars: 62000,
+    featured: true,
+  },
+  {
+    id: "jaeger",
+    name: "Jaeger",
+    description: "开源的端到端分布式追踪系统",
+    category: "observability",
+    type: "opensource",
+    tags: ["追踪", "分布式系统", "CNCF"],
+    url: "https://www.jaegertracing.io/",
+    github: "https://github.com/jaegertracing/jaeger",
+    stars: 20000,
+  },
+  {
+    id: "opentelemetry",
+    name: "OpenTelemetry",
+    description: "云原生可观测性框架，提供统一的遥测数据收集标准",
+    category: "observability",
+    type: "opensource",
+    tags: ["遥测", "标准化", "CNCF", "追踪"],
+    url: "https://opentelemetry.io/",
+    github: "https://github.com/open-telemetry",
+    featured: true,
+  },
+  {
+    id: "datadog",
+    name: "Datadog",
+    description: "云规模的监控和安全平台",
+    category: "observability",
+    type: "commercial",
+    tags: ["APM", "监控", "安全", "企业级"],
+    url: "https://www.datadoghq.com/",
+  },
+
+  // 安全
+  {
+    id: "trivy",
+    name: "Trivy",
+    description: "全面的安全扫描器，支持容器、文件系统、Git 仓库等",
+    category: "security",
+    type: "opensource",
+    tags: ["安全扫描", "漏洞检测", "容器安全"],
+    url: "https://trivy.dev/",
+    github: "https://github.com/aquasecurity/trivy",
+    stars: 22000,
+    featured: true,
+  },
+  {
+    id: "falco",
+    name: "Falco",
+    description: "云原生运行时安全项目，检测异常行为和威胁",
+    category: "security",
+    type: "opensource",
+    tags: ["运行时安全", "CNCF", "威胁检测"],
+    url: "https://falco.org/",
+    github: "https://github.com/falcosecurity/falco",
+    stars: 7000,
+  },
+  {
+    id: "opa",
+    name: "Open Policy Agent (OPA)",
+    description: "通用策略引擎，用于统一策略执行",
+    category: "security",
+    type: "opensource",
+    tags: ["策略引擎", "CNCF", "访问控制"],
+    url: "https://www.openpolicyagent.org/",
+    github: "https://github.com/open-policy-agent/opa",
+    stars: 9500,
+  },
+  {
+    id: "vault",
+    name: "HashiCorp Vault",
+    description: "密钥管理和数据保护平台",
+    category: "security",
+    type: "hybrid",
+    tags: ["密钥管理", "加密", "访问控制"],
+    url: "https://www.vaultproject.io/",
+    github: "https://github.com/hashicorp/vault",
+    stars: 30000,
+    featured: true,
+  },
+
+  // 基础设施
+  {
+    id: "terraform",
+    name: "Terraform",
+    description: "基础设施即代码工具，支持多云和混合云环境",
+    category: "infrastructure",
+    type: "hybrid",
+    tags: ["IaC", "多云", "基础设施"],
+    url: "https://www.terraform.io/",
+    github: "https://github.com/hashicorp/terraform",
+    stars: 42000,
+    featured: true,
+  },
+  {
+    id: "pulumi",
+    name: "Pulumi",
+    description: "使用通用编程语言定义基础设施的现代 IaC 工具",
+    category: "infrastructure",
+    type: "hybrid",
+    tags: ["IaC", "多语言", "云原生"],
+    url: "https://www.pulumi.com/",
+    github: "https://github.com/pulumi/pulumi",
+    stars: 21000,
+  },
+  {
+    id: "kubernetes",
+    name: "Kubernetes",
+    description: "容器编排平台，云原生应用的事实标准",
+    category: "infrastructure",
+    type: "opensource",
+    tags: ["容器编排", "CNCF", "云原生"],
+    url: "https://kubernetes.io/",
+    github: "https://github.com/kubernetes/kubernetes",
+    stars: 109000,
+    featured: true,
+  },
+  {
+    id: "helm",
+    name: "Helm",
+    description: "Kubernetes 包管理器，简化应用部署和管理",
+    category: "infrastructure",
+    type: "opensource",
+    tags: ["包管理", "Kubernetes", "CNCF"],
+    url: "https://helm.sh/",
+    github: "https://github.com/helm/helm",
+    stars: 26500,
+  },
+
+  // 开发者门户
+  {
+    id: "developer-portal",
+    name: "Spotify Developer Portal",
+    description: "基于 Backstage 的开发者门户参考实现",
+    category: "developer-portal",
+    type: "opensource",
+    tags: ["开发者体验", "文档", "API"],
+    url: "https://backstage.io/docs/features/software-catalog/",
+    github: "https://github.com/backstage/backstage",
+  },
+  {
+    id: "redocly",
+    name: "Redocly",
+    description: "API 文档和开发者门户平台",
+    category: "developer-portal",
+    type: "commercial",
+    tags: ["API 文档", "OpenAPI", "开发者体验"],
+    url: "https://redocly.com/",
+  },
+  {
+    id: "readme",
+    name: "ReadMe",
+    description: "交互式 API 文档和开发者中心平台",
+    category: "developer-portal",
+    type: "commercial",
+    tags: ["API 文档", "开发者体验", "分析"],
+    url: "https://readme.com/",
+  },
+
+  // 服务网格
+  {
+    id: "istio",
+    name: "Istio",
+    description: "开源服务网格，提供流量管理、安全和可观测性",
+    category: "service-mesh",
+    type: "opensource",
+    tags: ["服务网格", "流量管理", "CNCF"],
+    url: "https://istio.io/",
+    github: "https://github.com/istio/istio",
+    stars: 35000,
+    featured: true,
+  },
+  {
+    id: "linkerd",
+    name: "Linkerd",
+    description: "轻量级服务网格，专注于简单性和性能",
+    category: "service-mesh",
+    type: "opensource",
+    tags: ["服务网格", "轻量级", "CNCF"],
+    url: "https://linkerd.io/",
+    github: "https://github.com/linkerd/linkerd2",
+    stars: 10500,
+  },
+  {
+    id: "cilium",
+    name: "Cilium",
+    description: "基于 eBPF 的网络、安全和可观测性解决方案",
+    category: "service-mesh",
+    type: "opensource",
+    tags: ["eBPF", "网络", "安全", "CNCF"],
+    url: "https://cilium.io/",
+    github: "https://github.com/cilium/cilium",
+    stars: 19500,
+    featured: true,
+  },
+
+  // GitOps
+  {
+    id: "argocd",
+    name: "Argo CD",
+    description: "声明式 GitOps 持续交付工具",
+    category: "gitops",
+    type: "opensource",
+    tags: ["GitOps", "Kubernetes", "CNCF", "CD"],
+    url: "https://argo-cd.readthedocs.io/",
+    github: "https://github.com/argoproj/argo-cd",
+    stars: 17000,
+    featured: true,
+  },
+  {
+    id: "flux",
+    name: "Flux",
+    description: "Kubernetes 的 GitOps 工具包，用于保持集群与配置同步",
+    category: "gitops",
+    type: "opensource",
+    tags: ["GitOps", "Kubernetes", "CNCF"],
+    url: "https://fluxcd.io/",
+    github: "https://github.com/fluxcd/flux2",
+    stars: 6200,
+  },
+  {
+    id: "kustomize",
+    name: "Kustomize",
+    description: "Kubernetes 原生的配置管理工具",
+    category: "gitops",
+    type: "opensource",
+    tags: ["配置管理", "Kubernetes", "声明式"],
+    url: "https://kustomize.io/",
+    github: "https://github.com/kubernetes-sigs/kustomize",
+    stars: 10800,
+  },
+]

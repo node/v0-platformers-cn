@@ -9,6 +9,7 @@ import { useKeyboardShortcuts } from "@/components/use-keyboard-shortcuts"
 import { HeroSection } from "@/components/sections/hero-section"
 import { FrameworksSection } from "@/components/sections/frameworks-section"
 import { ToolsSection } from "@/components/sections/tools-section"
+import { ProjectsSection } from "@/components/sections/projects-section"
 import { ResourcesSection } from "@/components/sections/resources-section"
 import { CommunitySection } from "@/components/sections/community-section"
 
@@ -38,10 +39,10 @@ export default function HomePage() {
     }
   }, [])
 
-  // Track active section based on scroll
+  // Track active section based on scroll - 添加 projects
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "frameworks", "tools", "resources"]
+      const sections = ["home", "frameworks", "tools", "projects", "resources"]
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -78,6 +79,7 @@ export default function HomePage() {
         <HeroSection onNavigate={handleNavigate} />
         <FrameworksSection selectedFramework={selectedFramework} onSelectFramework={setSelectedFramework} />
         <ToolsSection selectedTool={selectedTool} onSelectTool={setSelectedTool} />
+        <ProjectsSection />
         <ResourcesSection />
         <CommunitySection />
       </main>

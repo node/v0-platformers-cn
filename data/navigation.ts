@@ -32,6 +32,13 @@ export const navigation: NavItem[] = [
     description: "度量和测算工具",
   },
   {
+    id: "projects",
+    title: "项目",
+    href: "#projects",
+    shortcut: "g p",
+    description: "平台工程相关开源和商业项目",
+  },
+  {
     id: "resources",
     title: "资源库",
     href: "#resources",
@@ -52,6 +59,7 @@ export const shortcuts = [
   { keys: ["g", "h"], description: "跳转到首页", action: "navigate-home" },
   { keys: ["g", "f"], description: "跳转到方法框架", action: "navigate-frameworks" },
   { keys: ["g", "t"], description: "跳转到度量工具", action: "navigate-tools" },
+  { keys: ["g", "p"], description: "跳转到项目", action: "navigate-projects" },
   { keys: ["g", "r"], description: "跳转到资源库", action: "navigate-resources" },
   { keys: ["g", "c"], description: "跳转到社区", action: "navigate-community" },
   { keys: ["/"], description: "打开搜索", action: "open-search" },

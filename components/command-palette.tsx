@@ -15,8 +15,9 @@ import {
 import { navigation } from "@/data/navigation"
 import { frameworks } from "@/data/frameworks"
 import { tools } from "@/data/tools"
+import { projects, projectCategories } from "@/data/projects"
 import { Kbd } from "@/components/ui/kbd"
-import { Home, Layers, Wrench, BookOpen, Users, ExternalLink, FileText, Calculator } from "lucide-react"
+import { Home, Layers, Wrench, BookOpen, Users, ExternalLink, FileText, Calculator, FolderKanban } from "lucide-react"
 
 interface CommandPaletteProps {
   open: boolean
@@ -30,6 +31,7 @@ const iconMap: Record<string, React.ReactNode> = {
   home: <Home className="h-4 w-4" />,
   frameworks: <Layers className="h-4 w-4" />,
   tools: <Wrench className="h-4 w-4" />,
+  projects: <FolderKanban className="h-4 w-4" />,
   resources: <BookOpen className="h-4 w-4" />,
   community: <Users className="h-4 w-4" />,
 }
@@ -49,7 +51,7 @@ export function CommandPalette({
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <CommandInput placeholder="搜索页面、框架、工具..." value={search} onValueChange={setSearch} />
+      <CommandInput placeholder="搜索页面、框架、工具、项目..." value={search} onValueChange={setSearch} />
       <CommandList>
         <CommandEmpty>未找到相关内容</CommandEmpty>
 
@@ -113,6 +115,28 @@ export function CommandPalette({
                 <span>{tool.title}</span>
                 <span className="text-xs text-muted-foreground line-clamp-1">{tool.description}</span>
               </div>
+            </CommandItem>
+          ))}
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="项目">
+          {projects.slice(0, 10).map((project) => (
+            <CommandItem
+              key={project.id}
+              value={`${project.name} ${project.description} ${project.tags.join(" ")} ${projectCategories.find((c) => c.id === project.category)?.name}`}
+              onSelect={() => {
+                window.open(project.url, "_blank")
+                onOpenChange(false)
+              }}
+            >
+              <FolderKanban className="mr-2 h-4 w-4" />
+              <div className="flex flex-col">
+                <span>{project.name}</span>
+                <span className="text-xs text-muted-foreground line-clamp-1">{project.description}</span>
+              </div>
+              <ExternalLink className="ml-auto h-3 w-3 text-muted-foreground" />
             </CommandItem>
           ))}
         </CommandGroup>

@@ -45,6 +45,10 @@ export function useKeyboardShortcuts({ onNavigate, onOpenSearch, onOpenShortcuts
               e.preventDefault()
               onNavigate("tools")
               break
+            case "p":
+              e.preventDefault()
+              onNavigate("projects")
+              break
             case "r":
               e.preventDefault()
               onNavigate("resources")
