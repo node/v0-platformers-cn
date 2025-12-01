@@ -25,6 +25,13 @@ export const navigation: NavItem[] = [
     description: "平台工程方法与框架",
   },
   {
+    id: "domain-practices",
+    title: "领域平台实践",
+    href: "#domain-practices",
+    shortcut: "g d",
+    description: "各领域的平台工程实践",
+  },
+  {
     id: "tools",
     title: "度量工具",
     href: "#tools",
@@ -58,6 +65,7 @@ export const navigation: NavItem[] = [
 export const shortcuts = [
   { keys: ["g", "h"], description: "跳转到首页", action: "navigate-home" },
   { keys: ["g", "f"], description: "跳转到方法框架", action: "navigate-frameworks" },
+  { keys: ["g", "d"], description: "跳转到领域平台实践", action: "navigate-domain-practices" },
   { keys: ["g", "t"], description: "跳转到度量工具", action: "navigate-tools" },
   { keys: ["g", "p"], description: "跳转到项目", action: "navigate-projects" },
   { keys: ["g", "r"], description: "跳转到资源库", action: "navigate-resources" },

@@ -16,20 +16,34 @@ import { navigation } from "@/data/navigation"
 import { frameworks } from "@/data/frameworks"
 import { tools } from "@/data/tools"
 import { projects, projectCategories } from "@/data/projects"
+import { domainPractices } from "@/data/domain-practices"
 import { Kbd } from "@/components/ui/kbd"
-import { Home, Layers, Wrench, BookOpen, Users, ExternalLink, FileText, Calculator, FolderKanban } from "lucide-react"
+import {
+  Home,
+  Layers,
+  Wrench,
+  BookOpen,
+  Users,
+  ExternalLink,
+  FileText,
+  Calculator,
+  FolderKanban,
+  Sparkles,
+} from "lucide-react"
 
 interface CommandPaletteProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   onNavigate: (section: string) => void
   onSelectFramework: (id: string) => void
+  onSelectPractice: (id: string) => void
   onSelectTool: (id: string) => void
 }
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <Home className="h-4 w-4" />,
   frameworks: <Layers className="h-4 w-4" />,
+  "domain-practices": <Sparkles className="h-4 w-4" />,
   tools: <Wrench className="h-4 w-4" />,
   projects: <FolderKanban className="h-4 w-4" />,
   resources: <BookOpen className="h-4 w-4" />,
@@ -41,6 +55,7 @@ export function CommandPalette({
   onOpenChange,
   onNavigate,
   onSelectFramework,
+  onSelectPractice,
   onSelectTool,
 }: CommandPaletteProps) {
   const [search, setSearch] = useState("")
@@ -93,6 +108,27 @@ export function CommandPalette({
               <div className="flex flex-col">
                 <span>{framework.title}</span>
                 <span className="text-xs text-muted-foreground line-clamp-1">{framework.description}</span>
+              </div>
+            </CommandItem>
+          ))}
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="领域平台实践">
+          {domainPractices.map((practice) => (
+            <CommandItem
+              key={practice.id}
+              value={`${practice.title} ${practice.description} ${practice.tags.join(" ")} ${practice.domain}`}
+              onSelect={() => {
+                onSelectPractice(practice.id)
+                onOpenChange(false)
+              }}
+            >
+              <Sparkles className="mr-2 h-4 w-4" />
+              <div className="flex flex-col">
+                <span>{practice.title}</span>
+                <span className="text-xs text-muted-foreground line-clamp-1">{practice.description}</span>
               </div>
             </CommandItem>
           ))}

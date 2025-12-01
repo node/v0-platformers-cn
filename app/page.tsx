@@ -12,6 +12,7 @@ import { ToolsSection } from "@/components/sections/tools-section"
 import { ProjectsSection } from "@/components/sections/projects-section"
 import { ResourcesSection } from "@/components/sections/resources-section"
 import { CommunitySection } from "@/components/sections/community-section"
+import { DomainPracticesSection } from "@/components/sections/domain-practices-section"
 
 export default function HomePage() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
@@ -19,6 +20,7 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState("home")
   const [selectedFramework, setSelectedFramework] = useState<string | null>(null)
   const [selectedTool, setSelectedTool] = useState<string | null>(null)
+  const [selectedPractice, setSelectedPractice] = useState<string | null>(null)
 
   const handleNavigate = useCallback((section: string) => {
     if (section === "community") {
@@ -39,10 +41,9 @@ export default function HomePage() {
     }
   }, [])
 
-  // Track active section based on scroll - 添加 projects
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "frameworks", "tools", "projects", "resources"]
+      const sections = ["home", "frameworks", "domain-practices", "tools", "projects", "resources"]
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -78,6 +79,7 @@ export default function HomePage() {
       <main className="pt-16">
         <HeroSection onNavigate={handleNavigate} />
         <FrameworksSection selectedFramework={selectedFramework} onSelectFramework={setSelectedFramework} />
+        <DomainPracticesSection selectedPractice={selectedPractice} onSelectPractice={setSelectedPractice} />
         <ToolsSection selectedTool={selectedTool} onSelectTool={setSelectedTool} />
         <ProjectsSection />
         <ResourcesSection />
@@ -93,6 +95,10 @@ export default function HomePage() {
         onSelectFramework={(id) => {
           setSelectedFramework(id)
           handleNavigate("frameworks")
+        }}
+        onSelectPractice={(id) => {
+          setSelectedPractice(id)
+          handleNavigate("domain-practices")
         }}
         onSelectTool={(id) => {
           setSelectedTool(id)

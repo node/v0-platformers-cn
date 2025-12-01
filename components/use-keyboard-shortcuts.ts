@@ -41,6 +41,10 @@ export function useKeyboardShortcuts({ onNavigate, onOpenSearch, onOpenShortcuts
               e.preventDefault()
               onNavigate("frameworks")
               break
+            case "d":
+              e.preventDefault()
+              onNavigate("domain-practices")
+              break
             case "t":
               e.preventDefault()
               onNavigate("tools")

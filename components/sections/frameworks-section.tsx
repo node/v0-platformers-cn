@@ -94,7 +94,7 @@ export function FrameworksSection({ selectedFramework, onSelectFramework }: Fram
                   <SheetTitle className="text-xl">{selected.title}</SheetTitle>
                   <p className="text-sm text-muted-foreground">{selected.description}</p>
                 </SheetHeader>
-                <ScrollArea className="mt-6 h-[calc(100vh-200px)]">
+                <ScrollArea className="mt-6 h-[calc(100vh-200px)] px-6">
                   <div className="prose prose-invert prose-sm max-w-none">
                     <div className="whitespace-pre-wrap text-sm leading-relaxed">
                       {selected.content.split("\n").map((line, i) => {
