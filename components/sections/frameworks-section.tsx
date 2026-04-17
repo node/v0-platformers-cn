@@ -15,6 +15,17 @@ interface FrameworksSectionProps {
   onSelectFramework: (id: string | null) => void
 }
 
+// 解析 Markdown 中的粗体语法
+function parseMarkdownText(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g)
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>
+    }
+    return part
+  })
+}
+
 export function FrameworksSection({ selectedFramework, onSelectFramework }: FrameworksSectionProps) {
   const [activeCategory, setActiveCategory] = useState<string>("all")
 
@@ -115,14 +126,14 @@ export function FrameworksSection({ selectedFramework, onSelectFramework }: Fram
                         if (line.startsWith("- ")) {
                           return (
                             <li key={i} className="ml-4 text-muted-foreground">
-                              {line.replace("- ", "")}
+                              {parseMarkdownText(line.replace("- ", ""))}
                             </li>
                           )
                         }
                         if (line.match(/^\d+\./)) {
                           return (
                             <li key={i} className="ml-4 text-muted-foreground">
-                              {line}
+                              {parseMarkdownText(line)}
                             </li>
                           )
                         }
@@ -131,7 +142,7 @@ export function FrameworksSection({ selectedFramework, onSelectFramework }: Fram
                         }
                         return (
                           <p key={i} className="text-muted-foreground">
-                            {line}
+                            {parseMarkdownText(line)}
                           </p>
                         )
                       })}
