@@ -29,6 +29,17 @@ interface DomainPracticesSectionProps {
   onSelectPractice?: (id: string | null) => void
 }
 
+// 解析 Markdown 中的粗体语法
+function parseMarkdownText(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g)
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>
+    }
+    return part
+  })
+}
+
 const iconMap: Record<string, React.ReactNode> = {
   Code: <Code className="h-5 w-5" />,
   Database: <Database className="h-5 w-5" />,
@@ -137,14 +148,14 @@ export function DomainPracticesSection({ selectedPractice, onSelectPractice }: D
                         if (line.startsWith("- ")) {
                           return (
                             <li key={i} className="ml-4 text-muted-foreground">
-                              {line.replace("- ", "")}
+                              {parseMarkdownText(line.replace("- ", ""))}
                             </li>
                           )
                         }
                         if (line.match(/^\d+\./)) {
                           return (
                             <li key={i} className="ml-4 text-muted-foreground">
-                              {line}
+                              {parseMarkdownText(line)}
                             </li>
                           )
                         }
@@ -153,7 +164,7 @@ export function DomainPracticesSection({ selectedPractice, onSelectPractice }: D
                         }
                         return (
                           <p key={i} className="text-muted-foreground">
-                            {line}
+                            {parseMarkdownText(line)}
                           </p>
                         )
                       })}
